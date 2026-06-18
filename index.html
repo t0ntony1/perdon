@@ -1,53 +1,498 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perdón ❤️</title>
-  <link rel="stylesheet" href="style.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>💜 Perdón</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:Arial,sans-serif;
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:20px;
+
+overflow:hidden;
+
+background:
+radial-gradient(
+circle at top,
+#f4e8ff,
+#d5b6ff,
+#9f7aea
+);
+
+}
+
+/* CORAZONES */
+
+.fondo{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+overflow:hidden;
+
+}
+
+.fondo span{
+
+position:absolute;
+
+color:#ffffff80;
+
+font-size:18px;
+
+animation:subir linear infinite;
+
+}
+
+@keyframes subir{
+
+from{
+
+transform:
+translateY(100vh);
+
+opacity:0;
+
+}
+
+20%{
+
+opacity:1;
+
+}
+
+to{
+
+transform:
+translateY(-120px);
+
+opacity:0;
+
+}
+
+}
+
+/* BOTON */
+
+#btn{
+
+padding:16px 30px;
+
+border:none;
+
+border-radius:24px;
+
+background:
+linear-gradient(
+45deg,
+#b46cff,
+#8f5cff
+);
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+
+box-shadow:
+0 0 30px rgba(180,108,255,.6);
+
+transition:.4s;
+
+}
+
+#btn:hover{
+
+transform:
+translateY(-3px);
+
+}
+
+/* TARJETA */
+
+.card{
+
+display:none;
+
+width:100%;
+
+max-width:520px;
+
+background:
+rgba(255,255,255,.78);
+
+backdrop-filter:
+blur(15px);
+
+padding:28px;
+
+border-radius:32px;
+
+box-shadow:
+0 0 70px rgba(193,125,255,.5);
+
+animation:
+abrir .8s;
+
+}
+
+@keyframes abrir{
+
+from{
+
+opacity:0;
+
+transform:
+translateY(30px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:
+translateY(0);
+
+}
+
+}
+
+.sub{
+
+text-align:center;
+
+color:#b07df6;
+
+font-size:13px;
+
+margin-bottom:25px;
+
+}
+
+/* CORAZON */
+
+.heart{
+
+margin:auto;
+
+width:75px;
+
+height:75px;
+
+background:#b46cff;
+
+position:relative;
+
+transform:
+rotate(-45deg);
+
+animation:
+latido 1.5s infinite;
+
+box-shadow:
+0 0 30px #c899ff;
+
+}
+
+.heart::before,
+.heart::after{
+
+content:"";
+
+position:absolute;
+
+width:75px;
+
+height:75px;
+
+background:#b46cff;
+
+border-radius:50%;
+
+}
+
+.heart::before{
+
+top:-38px;
+
+}
+
+.heart::after{
+
+left:38px;
+
+}
+
+@keyframes latido{
+
+0%,100%{
+
+transform:
+rotate(-45deg)
+scale(1);
+
+}
+
+40%{
+
+transform:
+rotate(-45deg)
+scale(1.07);
+
+}
+
+}
+
+/* SEPARADOR */
+
+.linea{
+
+text-align:center;
+
+margin:30px 0;
+
+color:#c18fff;
+
+letter-spacing:8px;
+
+}
+
+/* MENSAJE */
+
+.message{
+
+font-size:14px;
+
+line-height:1.25;
+
+color:#6020aa;
+
+text-align:justify;
+
+white-space:pre-line;
+
+}
+
+/* FINAL */
+
+.final{
+
+display:none;
+
+margin-top:20px;
+
+text-align:center;
+
+color:#a95cff;
+
+font-size:15px;
+
+animation:
+fade 2s;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.card{
+
+padding:22px;
+
+}
+
+.message{
+
+font-size:13px;
+
+line-height:1.2;
+
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-<div class="corazones"></div>
+<div class="fondo" id="fondo"></div>
 
-<div class="contenedor">
-    <h1>Para ti ❤️</h1>
+<button id="btn">
+💌 Abre la carta
+</button>
 
-    <p class="mensaje">
-      Sé que te molestaste por lo que pasó y quería decirte esto de una forma especial.
-    </p>
+<div
+class="card"
+id="card">
 
-    <div class="carta">
-      <p>
-        Perdón si lo que dije te hizo sentir mal.  
-        Quiero que sepas que no fue con ninguna intención rara ni porque estuviera pensando en otra persona.
-      </p>
 
-      <p>
-        Escuché mal el nombre y pregunté por impulso.  
-        Entiendo que igual pudo haberte hecho sentir incómoda y no quiero ignorar eso.
-      </p>
 
-      <p>
-        Me importas mucho y prefiero aclararlo contigo antes que dejar que esto nos aleje ❤️
-      </p>
-    </div>
+<!--<div class="heart"></div>-->
 
-    <button onclick="mostrar()">Abrir mi último mensaje</button>
+<div class="linea">
 
-    <div id="extra" class="oculto">
-      <h2>✨</h2>
-      <p>
-        No te pido que dejes de estar molesta de inmediato.  
-        Solo quería que supieras que te quiero y me gustaría hablar cuando te sientas lista.
-      </p>
-    </div>
+✦ Para Kane 💜 ✦
+
 </div>
 
-<script src="script.js"></script>
+<div
+class="message"
+id="message">
+
+</div>
+
+
+
+</div>
+
+<script>
+
+/* CORAZONES */
+
+const fondo=
+document.getElementById(
+"fondo"
+);
+
+for(
+let i=0;
+i<20;
+i++
+){
+
+const h=
+document.createElement(
+"span"
+);
+
+h.innerHTML=
+"💜";
+
+h.style.left=
+Math.random()*100+
+"%";
+
+h.style.animationDuration=
+(8+Math.random()*6)+
+"s";
+
+h.style.fontSize=
+(10+Math.random()*20)+
+"px";
+
+fondo.appendChild(h);
+
+}
+
+/* ABRIR */
+
+btn.onclick=()=>{
+
+btn.style.display=
+"none";
+
+card.style.display=
+"block";
+
+escribir();
+
+};
+
+function escribir(){
+
+const texto=`Sé que te molestaste por lo que pasó y quería decirte esto de una forma especial.
+
+Perdón si lo que dije te hizo sentir mal.
+
+Quiero que sepas que no fue con ninguna intención rara ni porque estuviera pensando en aquella chica.
+
+Escuché mal el nombre y pregunté por impulso.
+
+Entiendo que igual pudo haberte hecho sentir incómoda y no quiero ignorar eso.
+
+Me importas mucho y preferí aclararlo contigo.
+
+No te pido que me perdones de inmediato.
+
+Solo quería que supieras que me importas mucho y te amo 💜`;
+
+let i=0;
+
+function t(){
+
+if(
+i<
+texto.length
+){
+
+message.textContent+=
+texto[i];
+
+i++;
+
+setTimeout(
+t,
+18
+);
+
+}else{
+
+final.style.display=
+"block";
+
+}
+
+}
+
+t();
+
+}
+
+</script>
 
 </body>
 
 </html>
-
-
