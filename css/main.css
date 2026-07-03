@@ -41,11 +41,12 @@ body {
 }
 .titulo {
   margin-bottom: 600px;
+  font-size: 10px;
   font-family: "Arial Narrow", Arial, sans-serif;
   color: rgb(102, 37, 127);
   position: absolute;
   font-weight: bold;
-  letter-spacing: 5px;
+  letter-spacing: 1px;
   opacity: 0;
   animation: fadeIn 3s ease-in-out forwards;
   text-align: center;
